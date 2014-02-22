@@ -1,0 +1,27 @@
+= form_tag emails_path, method: 'post', multipart: true, role: 'form', class: 'form-inline' do |f|
+  .form-group
+    = label_tag 'eml_files', 'eml files', class: 'control-label'
+    = file_field_tag 'eml_files', multiple: true
+  %button.btn.btn-success{type: 'submit'}
+    %span.glyphicon.glyphicon-plus
+    Add Emails
+
+
+- if @emails.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th From
+        %th Summary
+        %th Date
+    %tbody
+      - @emails.each do |email|
+        %tr
+          %td= email.from
+          %td
+            %span.subject= email.subject
+            %span.body= email.body[0..255]
+          %td= email.date

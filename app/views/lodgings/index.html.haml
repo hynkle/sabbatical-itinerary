@@ -1,0 +1,14 @@
+- if @lodgings.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th City
+        %th Name
+    %tbody
+      - @lodgings.each do |lodging|
+        %tr
+          %td= lodging.city
+          %td= lodging.name

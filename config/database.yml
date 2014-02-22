@@ -1,0 +1,17 @@
+base: &BASE
+  adapter: postgresql
+  encoding: unicode
+  min_messages: WARNING
+
+development:
+  <<: *BASE
+  database: itineraries2
+
+development:
+  <<: *BASE
+  database: itineraries2_test
+
+development:
+  <<: *BASE
+  database: itineraries2
+
