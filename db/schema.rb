@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223114033) do
+ActiveRecord::Schema.define(version: 20140223152022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: true do |t|
+    t.string  "ident"
+    t.string  "name"
+    t.string  "city"
+    t.string  "size"
+    t.string  "keywords"
+    t.boolean "scheduled_service"
+    t.float   "lat"
+    t.float   "lon"
+    t.string  "iata_code"
+    t.string  "local_code"
+  end
+
+  add_index "airports", ["ident"], name: "index_airports_on_ident", using: :btree
+  add_index "airports", ["scheduled_service"], name: "index_airports_on_scheduled_service", using: :btree
 
   create_table "currencies", force: true do |t|
     t.string   "iso_code"
@@ -34,9 +50,26 @@ ActiveRecord::Schema.define(version: 20140223114033) do
     t.datetime "updated_at"
   end
 
+  create_table "flights", force: true do |t|
+    t.integer  "flight_id"
+    t.datetime "departure_local"
+    t.datetime "arrival_local"
+    t.datetime "departure_utc"
+    t.datetime "arrival_utc"
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lodgings", force: true do |t|
     t.string   "name"
     t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plane_journeys", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
