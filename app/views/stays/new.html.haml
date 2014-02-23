@@ -1,0 +1,13 @@
+= simple_form_for @stay, html: {class: 'form-horizontal'} do |f|
+  = f.fields_for :lodging do |ff|
+    = ff.input :city, label: 'City', autofocus: true
+    = ff.input :name, label: 'Lodging name'
+  = f.input :booked
+  = f.input :paid
+  = f.input :cost
+  = f.input :currency, as: :select, collection: %w(USD EUR TRY HUF CZK GBP BGN HRK ILS CHF)
+  = f.input :checkin, as: :string, input_html: {type: 'date'}
+  = f.input :checkout, as: :string, input_html: {type: 'date'}
+  .control-group.foo
+    .controls.foo
+      = f.button :submit

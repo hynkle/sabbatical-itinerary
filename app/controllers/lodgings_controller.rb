@@ -14,10 +14,13 @@ class LodgingsController < ApplicationController
   end
 
   def create
-    params.require(:lodging)
-    params[:lodging].permit(:name, :city)
-    @lodging = Lodging.create(params[:lodging])
-    respond_with @lodging
+    attrs = params.require(:lodging).permit(:name, :city)
+    @lodging = Lodging.create(attrs)
+    if @lodging.persisted?
+      redirect_to lodgings_path
+    else
+      respond_with @lodging
+    end
   end
 
 end

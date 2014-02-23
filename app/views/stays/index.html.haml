@@ -1,0 +1,36 @@
+= link_to new_stay_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Stay
+
+- if @stays.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Checkin
+        %th Checkout
+        %th Nights
+        %th Lodging
+        %th Booked?
+        %th Paid?
+        %th Cost
+    %tbody
+      - @stays.each do |stay|
+        %tr
+          %td= stay.checkin
+          %td= stay.checkout
+          %td= stay.nights
+          %td= stay.lodging
+          %td
+            - if stay.booked?
+              booked
+            - else
+              %strong unbooked
+          %td
+            - if stay.paid?
+              paid
+            - else
+              %strong unpaid
+          %td= "#{stay.cost} #{stay.currency}"

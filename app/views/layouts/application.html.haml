@@ -6,14 +6,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default.navbar-fixed-top{role: 'navigation'}
-      .container
-        .navbar-header= link_to 'Itineraries', '#', class: 'navbar-brand'
-        %ul.nav.navbar-nav
-          %li= link_to 'Emails', emails_path
-          -# %li= link_to 'Stays', stays_path
-          -# %li= link_to 'Journeys', '#'#journeys_path
-          -# %li= link_to 'Places', '#'#stays_path
-          -# %li= link_to 'Summary', '#'#summary_path
+    .navbar.navbar-static-top
+      .navbar-inner
+        .container
+          = link_to 'Itineraries', '#', class: 'brand'
+          %ul.nav
+            %li= link_to 'Emails', emails_path
+            %li= link_to 'Lodgings', lodgings_path
+            %li= link_to 'Stays', stays_path
+
+
     .container
       = yield
