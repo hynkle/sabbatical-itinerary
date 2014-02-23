@@ -33,4 +33,8 @@
               paid
             - else
               %strong unpaid
-          %td= "#{stay.cost} #{stay.currency}"
+          %td
+            - if stay.cost == 0
+              —
+            - else
+              = format_currency stay.cost, stay.currency

@@ -1,5 +1,6 @@
 class Stay < ActiveRecord::Base
   belongs_to :lodging
+  belongs_to :currency
   validates :lodging, presence: true
   validates :checkin, presence: true
   validates :checkout, presence: true

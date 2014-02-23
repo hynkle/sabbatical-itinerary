@@ -5,7 +5,7 @@
   = f.input :booked
   = f.input :paid
   = f.input :cost
-  = f.input :currency, as: :select, collection: %w(USD EUR TRY HUF CZK GBP BGN HRK ILS CHF)
+  = f.input :currency, as: :select, collection: Currency.all
   = f.input :checkin, as: :string, input_html: {type: 'date'}
   = f.input :checkout, as: :string, input_html: {type: 'date'}
   .control-group.foo

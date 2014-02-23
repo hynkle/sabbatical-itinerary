@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Currency.create!(iso_code: 'USD', name: 'US dollars',        format: '$%{amount}', decimal_digits: 2) 
+Currency.create!(iso_code: 'EUR', name: 'euros',             format: '€%{amount}', decimal_digits: 2) 
+Currency.create!(iso_code: 'TRY', name: 'Turkish lira',      format: '₺%{amount}', decimal_digits: 2) 
+Currency.create!(iso_code: 'HUF', name: 'Hungarian forints', format: '%{amount} Ft', decimal_digits: 0) 
+Currency.create!(iso_code: 'CZK', name: 'Czech koruna',      format: '%{amount} Kč', decimal_digits: 2) 
+Currency.create!(iso_code: 'GBP', name: 'British pounds',    format: '£%{amount}', decimal_digits: 2) 
+Currency.create!(iso_code: 'BGN', name: 'Bulgarian lev',     format: '%{amount} лв.', decimal_digits: 2) 
+Currency.create!(iso_code: 'HRK', name: 'Croatian kuna',     format: '%{amount} kn', decimal_digits: 2) 
+Currency.create!(iso_code: 'ILS', name: 'Israeli shekels',   format: '₪ %{amount}', decimal_digits: 2) 
+Currency.create!(iso_code: 'CHF', name: 'Swiss francs',      format: '%{amount} %{iso_code}', decimal_digits: 2) 

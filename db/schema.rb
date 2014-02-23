@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222210514) do
+ActiveRecord::Schema.define(version: 20140223114033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "currencies", force: true do |t|
+    t.string   "iso_code"
+    t.string   "name"
+    t.string   "format",         default: "%{amount} %{iso_code}"
+    t.integer  "decimal_digits", default: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "emails", force: true do |t|
     t.string   "from"
@@ -38,10 +47,10 @@ ActiveRecord::Schema.define(version: 20140222210514) do
     t.date     "checkout"
     t.boolean  "booked"
     t.boolean  "paid"
-    t.decimal  "cost",       precision: 7, scale: 2
-    t.string   "currency"
+    t.decimal  "cost",        precision: 7, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "currency_id"
   end
 
 end
