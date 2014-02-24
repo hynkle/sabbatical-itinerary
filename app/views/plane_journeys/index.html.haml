@@ -17,7 +17,6 @@
         %th Legs
         %th Airline
         %th Booked?
-        %th Paid?
         %th Cost
     %tbody
       - @plane_journeys.each do |pj|
@@ -36,11 +35,6 @@
               booked
             - else
               %strong unbooked
-          %td
-            - if pj.paid?
-              paid
-            - else
-              %strong unpaid
           %td
             - if pj.cost == 0
               —
