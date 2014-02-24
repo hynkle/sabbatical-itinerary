@@ -34,7 +34,9 @@
             - else
               %strong unpaid
           %td
-            - if stay.cost == 0
+            - if stay.cost.nil?
+              %em unknown
+            - elsif stay.cost.zero?
               —
             - else
-              = format_currency stay.cost, stay.currency
+              = stay.cost.format

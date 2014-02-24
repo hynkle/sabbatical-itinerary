@@ -2,7 +2,8 @@
   = f.input :airline, autofocus: true
   = f.input :booked
   = f.input :cost
-  = f.input :currency_id, as: :select, collection: Currency.all
+  = f.input :cost_currency, as: :select, collection: @currencies, value_method: :iso_code, label_method: ->(c){"#{c.iso_code} (#{c.name})"}
+
   %div.js-flights-fields-container
     = f.fields_for :flights do |ff|
       = render 'flight_fields', f: ff

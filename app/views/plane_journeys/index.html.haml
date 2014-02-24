@@ -36,9 +36,9 @@
             - else
               %strong unbooked
           %td
-            - if pj.cost == 0
-              —
-            - elsif pj.cost.nil?
+            - if pj.cost.nil?
               %em unknown
+            - elsif pj.cost.zero?
+              —
             - else
-              = format_currency pj.cost, pj.currency
+              = pj.cost.format

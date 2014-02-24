@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224083648) do
+ActiveRecord::Schema.define(version: 20140224092131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,15 +32,6 @@ ActiveRecord::Schema.define(version: 20140224083648) do
 
   add_index "airports", ["ident"], name: "index_airports_on_ident", using: :btree
   add_index "airports", ["scheduled_service"], name: "index_airports_on_scheduled_service", using: :btree
-
-  create_table "currencies", force: true do |t|
-    t.string   "iso_code"
-    t.string   "name"
-    t.string   "format",         default: "%{amount} %{iso_code}"
-    t.integer  "decimal_digits", default: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "emails", force: true do |t|
     t.string   "from"
@@ -70,11 +61,11 @@ ActiveRecord::Schema.define(version: 20140224083648) do
 
   create_table "plane_journeys", force: true do |t|
     t.boolean  "booked"
-    t.decimal  "cost",        precision: 7, scale: 2
-    t.integer  "currency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "airline"
+    t.integer  "cost_subunits"
+    t.string   "cost_currency"
   end
 
   create_table "stays", force: true do |t|
@@ -83,10 +74,10 @@ ActiveRecord::Schema.define(version: 20140224083648) do
     t.date     "checkout"
     t.boolean  "booked"
     t.boolean  "paid"
-    t.decimal  "cost",        precision: 7, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "currency_id"
+    t.integer  "cost_subunits"
+    t.string   "cost_currency"
   end
 
 end

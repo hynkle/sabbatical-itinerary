@@ -11,11 +11,12 @@ class PlaneJourneysController < ApplicationController
     @plane_journey = PlaneJourney.new(params[:plane_journey])
     @plane_journey.flights.build
     @airports = Airport.active.with_time_zone.order(:city)
+    @currencies = CURRENCIES
     respond_with @plane_journey
   end
 
   def create
-    attrs = params.require(:plane_journey).permit(:airline, :booked, :required, :cost, :currency_id, flights_attributes: [:from_id, :to_id, :departure, :arrival])
+    attrs = params.require(:plane_journey).permit(:airline, :booked, :required, :cost, :cost_currency, flights_attributes: [:from_id, :to_id, :departure, :arrival])
     @plane_journey = PlaneJourney.new(attrs)
     if @plane_journey.save
       redirect_to plane_journeys_path

@@ -1,6 +1,8 @@
 class Stay < ActiveRecord::Base
   belongs_to :lodging
-  belongs_to :currency
+
+  monetize :cost_subunits, with_model_currency: :cost_currency, allow_nil: true, numericality: {greater_than_or_equal_to: 0}
+
   validates :lodging, presence: true
   validates :checkin, presence: true
   validates :checkout, presence: true

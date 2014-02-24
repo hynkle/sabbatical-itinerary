@@ -1,7 +1,9 @@
 class PlaneJourney < ActiveRecord::Base
   has_many :flights, ->{order :departure}, dependent: :destroy, inverse_of: :plane_journey
+
+  monetize :cost_subunits, with_model_currency: :cost_currency, allow_nil: true, numericality: {greater_than_or_equal_to: 0}
+
   accepts_nested_attributes_for :flights, reject_if: :all_blank, allow_destroy: true
-  belongs_to :currency
 
   def from_city
     flights.first.from_city

@@ -5,7 +5,7 @@
   = f.input :booked
   = f.input :paid
   = f.input :cost
-  = f.input :currency, as: :select, collection: Currency.all
+  = f.input :cost_currency, as: :select, collection: @currencies, value_method: :iso_code, label_method: ->(c){"#{c.iso_code} (#{c.name})"}
   = f.input :checkin, as: :string, input_html: {type: 'date'}
   = f.input :checkout, as: :string, input_html: {type: 'date'}
   .form-actions
