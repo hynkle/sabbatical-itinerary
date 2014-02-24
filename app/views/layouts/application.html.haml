@@ -12,11 +12,25 @@
         .container
           = link_to 'Itineraries', '#', class: 'brand'
           %ul.nav
-            %li= link_to 'Emails', emails_path
-            %li= link_to 'Lodgings', lodgings_path
+            -# %li= link_to 'Emails', emails_path
+
             %li= link_to 'Stays', stays_path
-            %li= link_to 'Plane Journeys', plane_journeys_path
+
             %li= link_to 'Money', money_path, data: {'no-turbolink' => true}
+
+            %li.dropdown
+              = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+                Journeys
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to 'Plane Journeys', plane_journeys_path
+
+            %li.dropdown
+              = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
+                Places
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to 'Lodgings', lodgings_path
 
 
     .container
