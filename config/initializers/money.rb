@@ -4,22 +4,11 @@ MoneyRails.configure do |config|
   #
   # config.default_currency = :usd
 
-  # Set default bank object
-  #
-  # Example:
-  # config.default_bank = EuCentralBank.new
-
-  # Add exchange rates to current money bank object.
-  # (The conversion rate refers to one direction only)
-  #
-  # Example:
-  # config.add_rate "USD", "CAD", 1.24515
-  # config.add_rate "CAD", "USD", 0.803115
-
-  # To handle the inclusion of validations for monetized fields
-  # The default value is true
-  #
-  # config.include_validations = true
+  Money.default_bank = Money::Bank::OpenExchangeRatesBank.new.tap do |moe|
+    moe.app_id = ENV['OPEN_EXCHANGE_RATES_APP_ID'] || raise('Missing required environment variable OPEN_EXCHANGE_RATES_APP_ID')
+    moe.cache = Rails.root.join(*%w(tmp cache open_exchange_rates)).to_s
+    moe.update_rates
+  end
 
   config.amount_column = {
     prefix: '',           # column name prefix

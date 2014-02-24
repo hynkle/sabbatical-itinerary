@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'httparty'
 gem 'cocoon'
 gem 'money-rails'
+gem 'money-open-exchange-rates', require: 'money/bank/open_exchange_rates_bank'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
