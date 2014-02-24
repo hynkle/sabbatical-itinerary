@@ -1,0 +1,7 @@
+= simple_form_for @ferry_terminal, html: {class: 'form-vertical'} do |f|
+  = f.input :name
+  = f.input :lat
+  = f.input :lon
+  = f.input :time_zone, as: :string
+  .form-actions
+    = f.button :submit

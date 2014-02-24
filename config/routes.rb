@@ -1,6 +1,7 @@
 ItinerariesRailsActiverecord::Application.routes.draw do
   resources :emails, only: [:index, :create]
   resources :lodgings, only: [:index, :new, :create]
+  resources :ferry_terminals, only: [:index, :new, :create]
   resources :stays, only: [:index, :new, :create]
   resources :plane_journeys, only: [:index, :new, :create]
   resources :expenditure_events, only: [:index]

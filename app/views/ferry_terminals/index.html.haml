@@ -1,0 +1,16 @@
+= link_to new_ferry_terminal_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Ferry Terminal
+
+- if @ferry_terminals.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+    %tbody
+      - @ferry_terminals.each do |ft|
+        %tr
+          %td= ft.name
