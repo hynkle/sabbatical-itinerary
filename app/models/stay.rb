@@ -14,6 +14,14 @@ class Stay < ActiveRecord::Base
     order(:checkin)
   end
 
+  def self.unpaid
+    where paid: false
+  end
+
+  def payment_event
+    [checkin.to_date, cost]
+  end
+
   def nights
     (checkout - checkin).to_i
   end

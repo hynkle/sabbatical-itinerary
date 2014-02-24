@@ -5,6 +5,22 @@ class PlaneJourney < ActiveRecord::Base
 
   accepts_nested_attributes_for :flights, reject_if: :all_blank, allow_destroy: true
 
+  def self.unpaid
+    unbooked
+  end
+
+  def self.unbooked
+    where booked: false
+  end
+
+  def payment_event
+    [departure.to_date, cost]
+  end
+
+  def paid?
+    booked?
+  end
+
   def from_city
     return nil if flights.empty?
     flights.first.from_city
