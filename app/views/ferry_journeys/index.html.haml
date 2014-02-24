@@ -1,0 +1,43 @@
+= link_to new_ferry_journey_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Ferry Journey
+
+- if @ferry_journeys.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th From
+        %th To
+        %th Departure
+        %th Arrival
+        %th Duration
+        %th Operator
+        %th Booked?
+        %th Cost
+    %tbody
+      - @ferry_journeys.each do |fj|
+        %tr
+          %td= fj.from_name
+          %td= fj.to_name
+          %td= fj.departure.strftime('%-d %B at %-H:%M')
+          %td
+            = fj.arrival.strftime('%-d %B at %-H:%M')
+            = time_zone_difference fj.departure, fj.arrival
+          %td= format_duration fj.arrival, fj.departure 
+          %td= fj.operator
+          %td
+            - if fj.booked?
+              booked
+            - else
+              %strong unbooked
+          %td
+            - if fj.cost.nil?
+              %em unknown
+            - elsif fj.cost.zero?
+              —
+            - else
+              = fj.cost.format
+

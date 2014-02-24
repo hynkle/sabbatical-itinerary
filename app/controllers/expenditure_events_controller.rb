@@ -5,6 +5,7 @@ class ExpenditureEventsController < ApplicationController
     date_cost_pairs = []
     date_cost_pairs += Stay.unpaid.map(&:payment_event)
     date_cost_pairs += PlaneJourney.unpaid.includes(flights: [:departure]).map(&:payment_event)
+    date_cost_pairs += FerryJourney.unpaid.map(&:payment_event)
 
     date_to_cost = Hash.new do |hash, date|
       raise ArgumentError, "expected Date, got #{Date.class}" unless date.is_a? Date

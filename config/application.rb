@@ -21,3 +21,5 @@ module ItinerariesRailsActiverecord
     # config.i18n.default_locale = :de
   end
 end
+
+require 'time_zone_db'

@@ -1,0 +1,13 @@
+= simple_form_for @ferry_journey, html: {class: 'form-horizontal'} do |f|
+  = f.input :from_id, collection: @ferry_terminals, autofocus: true
+  = f.input :to_id, collection: @ferry_terminals
+  = f.input :departure, as: :string, label: 'Departing at', placeholder: 'yyyy-mm-dd hh:mm'
+  = f.input :arrival, as: :string, label: 'Arriving at', placeholder: 'yyyy-mm-dd hh:mm'
+  = f.input :operator
+  = f.input :booked
+  = f.input :cost
+  = f.input :cost_currency, as: :select, collection: @currencies, value_method: :iso_code, label_method: ->(c){"#{c.iso_code} (#{c.name})"}
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+
