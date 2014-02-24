@@ -6,18 +6,22 @@ class PlaneJourney < ActiveRecord::Base
   accepts_nested_attributes_for :flights, reject_if: :all_blank, allow_destroy: true
 
   def from_city
+    return nil if flights.empty?
     flights.first.from_city
   end
 
   def to_city
+    return nil if flights.empty?
     flights.last.to_city
   end
 
   def departure
+    return nil if flights.empty?
     flights.first.departure
   end
 
   def arrival
+    return nil if flights.empty?
     flights.last.arrival
   end
 end
