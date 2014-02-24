@@ -1,0 +1,16 @@
+= simple_form_for @plane_journey, html: {class: 'form-horizontal'} do |f|
+  = f.input :airline, autofocus: true
+  = f.input :booked
+  = f.input :cost
+  = f.input :currency_id, as: :select, collection: Currency.all
+  %div.js-flights-fields-container
+    = f.fields_for :flights do |ff|
+      = render 'flight_fields', f: ff
+  .control-group
+    .controls
+      .links
+        = link_to_add_association f, :flights, class: 'btn', data: {'association-insertion-node' => '.js-flights-fields-container', 'association-insertion-method' => 'append'} do
+          %i.icon.icon-plus
+          Add another flight
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

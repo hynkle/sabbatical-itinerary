@@ -15,8 +15,8 @@ class StaysController < ApplicationController
 
   def create
     attrs = params.require(:stay).permit(:checkin, :checkout, :booked, :paid, :cost, :currency, lodging_attributes: [:name, :city])
-    @stay = Stay.create(attrs)
-    if @stay.persisted?
+    @stay = Stay.new(attrs)
+    if @stay.save
       redirect_to stays_path
     else
       respond_with @stay

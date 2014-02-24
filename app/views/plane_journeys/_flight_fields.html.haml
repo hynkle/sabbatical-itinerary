@@ -1,0 +1,5 @@
+%fieldset.flight.well
+  = f.input :from_id, collection: @airports, label_method: :to_s, input_html: {class: 'js-from-airport'}
+  = f.input :to_id, collection: @airports, label_method: :to_s, input_html: {class: 'js-to-airport'}
+  = f.input :departure, as: :string, label: 'Departing at', placeholder: 'yyyy-mm-dd hh:mm'
+  = f.input :arrival, as: :string, label: 'Arriving at', placeholder: 'yyyy-mm-dd hh:mm'

@@ -21,17 +21,17 @@ CSV.foreach(airport_csv_path, headers: true) do |row|
   next unless row['type'].match /_airport$/
   airport = Airport.where(ident: row['ident']).first_or_initialize
   airport.name = row['name']
-  airport.city = row['city']
-  size = case row['type']
-         when 'large_airport' then 1
-         when 'medium_airport' then 2
-         when 'small_airport' then 3
-         else raise "unexpected airport type #{row['type'].inspect}"
-         end
-  keywords = row['keywords']
-  scheduled_service = row['scheduled_service'] == 'yes' ? true : false
-  airport.lat = row['lat']
-  airport.lon = row['lon']
+  airport.city = row['municipality']
+  airport.size = case row['type']
+                 when 'large_airport' then 1
+                 when 'medium_airport' then 2
+                 when 'small_airport' then 3
+                 else raise "unexpected airport type #{row['type'].inspect}"
+                 end
+  airport.keywords = row['keywords']
+  airport.scheduled_service = row['scheduled_service'] == 'yes' ? true : false
+  airport.lat = row['latitude_deg']
+  airport.lon = row['longitude_deg']
   airport.iata_code = row['iata_code']
   airport.local_code = row['local_code']
   airport.save! if airport.new_record? || airport.changed?

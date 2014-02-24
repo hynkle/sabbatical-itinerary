@@ -1,0 +1,50 @@
+= link_to new_plane_journey_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Plane Journey
+
+- if @plane_journeys.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th From
+        %th To
+        %th Departure
+        %th Arrival
+        %th Duration
+        %th Legs
+        %th Airline
+        %th Booked?
+        %th Paid?
+        %th Cost
+    %tbody
+      - @plane_journeys.each do |pj|
+        %tr
+          %td= pj.from_city
+          %td= pj.to_city
+          %td= pj.departure.strftime('%-d %B at %-H:%M')
+          %td
+            = pj.arrival.strftime('%-d %B at %-H:%M')
+            = time_zone_difference pj.departure, pj.arrival
+          %td= format_duration pj.arrival, pj.departure 
+          %td= pj.flights.count
+          %td= pj.airline
+          %td
+            - if pj.booked?
+              booked
+            - else
+              %strong unbooked
+          %td
+            - if pj.paid?
+              paid
+            - else
+              %strong unpaid
+          %td
+            - if pj.cost == 0
+              —
+            - elsif pj.cost.nil?
+              %em unknown
+            - else
+              = format_currency pj.cost, pj.currency

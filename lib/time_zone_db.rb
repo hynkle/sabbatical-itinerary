@@ -7,7 +7,7 @@ module TimeZoneDB
   format :json
 
   def self.timezone_from_coordinates(lat, lon)
-    get '/', query: {lat: lat, lng: lon}
+    response = get '/', query: {lat: lat, lng: lon}
     return response['zoneName'] if response.success?
   end
 end

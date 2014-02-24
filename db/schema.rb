@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223152022) do
+ActiveRecord::Schema.define(version: 20140224083648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140223152022) do
     t.float   "lon"
     t.string  "iata_code"
     t.string  "local_code"
+    t.string  "time_zone"
   end
 
   add_index "airports", ["ident"], name: "index_airports_on_ident", using: :btree
@@ -51,11 +52,9 @@ ActiveRecord::Schema.define(version: 20140223152022) do
   end
 
   create_table "flights", force: true do |t|
-    t.integer  "flight_id"
-    t.datetime "departure_local"
-    t.datetime "arrival_local"
-    t.datetime "departure_utc"
-    t.datetime "arrival_utc"
+    t.integer  "plane_journey_id"
+    t.datetime "departure"
+    t.datetime "arrival"
     t.integer  "from_id"
     t.integer  "to_id"
     t.datetime "created_at"
@@ -70,8 +69,12 @@ ActiveRecord::Schema.define(version: 20140223152022) do
   end
 
   create_table "plane_journeys", force: true do |t|
+    t.boolean  "booked"
+    t.decimal  "cost",        precision: 7, scale: 2
+    t.integer  "currency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "airline"
   end
 
   create_table "stays", force: true do |t|

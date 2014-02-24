@@ -15,6 +15,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'simple_form'
 gem 'httparty'
+gem 'cocoon'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require moment.min.js
+//= require cocoon
 //= require_tree .
