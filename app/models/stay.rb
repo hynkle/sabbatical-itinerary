@@ -19,7 +19,7 @@ class Stay < ActiveRecord::Base
   end
 
   def payment_event
-    [checkin.to_date, cost]
+    [checkin, cost]
   end
 
   def nights

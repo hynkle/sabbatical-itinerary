@@ -1,12 +1,10 @@
 $(function(){
-  var root_el = document.getElementById('money-visualization');
+  var root_el = document.getElementById('projection');
   if (!root_el) {
     return;
   }
   var root_el = d3.select(root_el);
 
-  var INITIAL_AMOUNT = 32487.80;
-  var FOOD_PER_DAY = 40;
   var parseDate = d3.time.format('%Y-%m-%d').parse
 
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -40,23 +38,13 @@ $(function(){
 
   var table = root_el.append('table');
 
-  d3.json('expenditure_events.json', function(error, data) {
+  d3.json('projection.json', function(error, data) {
     if (error) {
       throw error;
     }
 
     data.forEach(function(d) {
       d.date = parseDate(d.date);
-    });
-
-    data.sort(function(a,b){
-      return d3.ascending(a.date, b.date);
-    });
-
-    amount = INITIAL_AMOUNT;
-    data.forEach(function(d) {
-      amount -= d.amount + FOOD_PER_DAY;
-      d.amount = amount;
     });
 
     data_date_extents = d3.extent(data, function(d) { return d.date; });
@@ -68,8 +56,8 @@ $(function(){
     start_date = d3.min([earliest_date_in_data, today]);
     end_date = d3.max([latest_date_in_data, end_of_2014]);
 
-    x.domain([start_date, end_date]);
-    y.domain([0, INITIAL_AMOUNT]);
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.amount; })]);
 
     svg.append("path")
         .datum(data)

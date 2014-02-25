@@ -58,7 +58,7 @@ class TrainJourney < ActiveRecord::Base
   end
 
   def payment_event
-    [departure.to_date, cost]
+    [departure, cost]
   end
 
   def paid?
