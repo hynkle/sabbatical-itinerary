@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225144521) do
+ActiveRecord::Schema.define(version: 20140225192325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,16 @@ ActiveRecord::Schema.define(version: 20140225144521) do
     t.string   "airline"
     t.integer  "cost_subunits"
     t.string   "cost_currency"
+  end
+
+  create_table "scheduled_costs", force: true do |t|
+    t.date     "date"
+    t.integer  "cost_subunits"
+    t.string   "cost_currency"
+    t.string   "city"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stays", force: true do |t|

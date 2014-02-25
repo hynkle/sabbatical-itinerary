@@ -8,6 +8,7 @@ ItinerariesRailsActiverecord::Application.routes.draw do
   resources :ferry_journeys, only: [:index, :new, :create]
   resources :train_journeys, only: [:index, :new, :create]
   resources :financial_states, only: [:index, :new, :create]
+  resources :scheduled_costs, only: [:index, :new, :create]
   get 'projection' => 'projection#show', as: :projection
 
   # The priority is based upon order of creation: first created -> highest priority.

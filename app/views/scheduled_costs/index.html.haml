@@ -1,0 +1,30 @@
+= link_to new_scheduled_cost_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Scheduled Cost
+
+- if @scheduled_costs.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Date
+        %th City
+        %th Description
+        %th Amount
+    %tbody
+      - @scheduled_costs.each do |sc|
+        %tr
+          %td= sc.date.strftime('%-d %B')
+          %td= sc.city
+          %td= sc.description
+          %td
+            - if sc.cost.nil?
+              %em unknown
+            - elsif sc.cost.zero?
+              —
+            - else
+              = sc.cost.format
+
+
