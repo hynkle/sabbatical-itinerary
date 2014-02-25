@@ -1,0 +1,21 @@
+= link_to new_financial_state_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Financial State
+
+- if @financial_states.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Timestamp
+        %th Balance
+    %tbody
+      - @financial_states.each do |fs|
+        %tr
+          %td
+            = time_ago_in_words fs.timestamp
+            ago
+            %small.muted (#{fs.timestamp})
+          %td= fs.balance.format 

@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224212025) do
+ActiveRecord::Schema.define(version: 20140225144521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_balances", force: true do |t|
+    t.integer  "financial_state_id"
+    t.string   "name"
+    t.integer  "balance_subunits"
+    t.string   "balance_currency"
+    t.boolean  "credit",             default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "airports", force: true do |t|
     t.string  "ident"
@@ -60,6 +70,12 @@ ActiveRecord::Schema.define(version: 20140224212025) do
     t.string   "time_zone"
     t.float    "lat"
     t.float    "lon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "financial_states", force: true do |t|
+    t.datetime "timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

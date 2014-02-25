@@ -1,0 +1,5 @@
+%fieldset.account_balance.well
+  = f.input :credit
+  = f.input :name
+  = f.input :balance, placeholder: f.object.source_balance
+  = f.input :balance_currency, as: :select, collection: @currencies, value_method: :iso_code, label_method: ->(c){"#{c.iso_code} (#{c.name})"}

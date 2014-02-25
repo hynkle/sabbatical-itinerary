@@ -1,0 +1,12 @@
+= simple_form_for @financial_state, html: {class: 'form-horizontal'} do |f|
+  %div.js-account-balance-fields-container
+    = f.fields_for :account_balances do |ff|
+      = render 'account_balance_fields', f: ff
+  .control-group
+    .controls
+      .links
+        = link_to_add_association f, :account_balances, class: 'btn', data: {'association-insertion-node' => '.js-account-balance-fields-container', 'association-insertion-method' => 'append'} do
+          %i.icon.icon-plus
+          Add another account
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
