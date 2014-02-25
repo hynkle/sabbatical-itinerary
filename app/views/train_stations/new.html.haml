@@ -1,0 +1,8 @@
+= simple_form_for @train_station, html: {class: 'form-vertical'} do |f|
+  = f.input :city, autofocus: true
+  = f.input :name
+  = f.input :lat
+  = f.input :lon
+  = f.input :time_zone, as: :string
+  .form-actions
+    = f.button :submit

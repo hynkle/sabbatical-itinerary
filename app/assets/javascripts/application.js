@@ -17,4 +17,5 @@
 //= require moment.min.js
 //= require bootstrap
 //= require cocoon
+//= require d3
 //= require_tree .

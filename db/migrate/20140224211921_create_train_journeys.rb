@@ -1,6 +1,6 @@
-class CreateFerryJourneys < ActiveRecord::Migration
+class CreateTrainJourneys < ActiveRecord::Migration
   def change
-    create_table :ferry_journeys do |t|
+    create_table :train_journeys do |t|
       t.datetime :departure
       t.datetime :arrival
       t.integer :from_id

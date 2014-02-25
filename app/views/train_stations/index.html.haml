@@ -1,0 +1,19 @@
+= link_to new_train_station_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Train Station
+
+- if @train_stations.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th City
+        %th Name
+    %tbody
+      - @train_stations.each do |ts|
+        %tr
+          %td= ts.city
+          %td= ts.name
+

@@ -1,0 +1,43 @@
+= link_to new_train_journey_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Train Journey
+
+- if @train_journeys.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th From
+        %th To
+        %th Departure
+        %th Arrival
+        %th Duration
+        %th Operator
+        %th Booked?
+        %th Cost
+    %tbody
+      - @train_journeys.each do |tj|
+        %tr
+          %td= tj.from_city
+          %td= tj.to_city
+          %td= tj.departure.strftime('%-d %B at %-H:%M')
+          %td
+            = tj.arrival.strftime('%-d %B at %-H:%M')
+            = time_zone_difference tj.departure, tj.arrival
+          %td= format_duration tj.arrival, tj.departure 
+          %td= tj.operator
+          %td
+            - if tj.booked?
+              booked
+            - else
+              %strong unbooked
+          %td
+            - if tj.cost.nil?
+              %em unknown
+            - elsif tj.cost.zero?
+              —
+            - else
+              = tj.cost.format
+
