@@ -7,7 +7,7 @@ class FinancialState < ActiveRecord::Base
 
   def balance
     return Money.new(0) if account_balances.empty?
-    account_balances.sum(&:balance).exchange_to(Money.default_currency)
+    account_balances.map(&:balance).sum.exchange_to(Money.default_currency)
   end
 
   def self.chronological
