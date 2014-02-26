@@ -17,13 +17,35 @@ $(function(){
   var y = d3.scale.linear()
       .range([height, 0]);
 
+  var abbreviated_month = d3.time.format('%b');
+  var just_year = d3.time.format('%Y');
+  var xTickFormat = function(date) {
+    // "Jan 2014", but "Feb", "Mar", etc.
+    if (date.getMonth() == 0) {
+      return just_year(date);
+    }
+    return abbreviated_month(date);
+  };
+
+  var dollarFormat = d3.format('\$,i');
+  var yTickFormat = function(amount) {
+    if (amount % 1000 == 0) {
+      return dollarFormat(amount / 1000) + "k";
+    } else {
+      return dollarFormat(amount);
+    }
+  };
+
   var xAxis = d3.svg.axis()
       .scale(x)
-      .orient("bottom");
+      .orient("bottom")
+      .ticks(d3.time.months, 1)
+      .tickFormat(xTickFormat);
 
   var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("left");
+      .orient("left")
+      .tickFormat(yTickFormat);
 
   var area = d3.svg.area()
       .x(function(d) { return x(d.date); })
@@ -99,7 +121,7 @@ $(function(){
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Price ($)");
+        .text("Balance");
 
     // and now for the table
     table
