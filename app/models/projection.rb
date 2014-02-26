@@ -24,7 +24,7 @@ class Projection
 
   # sorted
   def historical_balances
-    @historical_balances ||= FinancialState.all.map do |fs|
+    @historical_balances ||= FinancialState.includes(:account_balances).map do |fs|
       DateBalance.new(fs.timestamp, fs.balance)
     end.sort
   end
@@ -69,9 +69,9 @@ class Projection
     return @date_costs if defined? @date_costs
     time_cost_pairs = []
     time_cost_pairs += Stay.unpaid.map(&:payment_event)
-    time_cost_pairs += PlaneJourney.unpaid.includes(flights: [:departure]).map(&:payment_event)
-    time_cost_pairs += FerryJourney.unpaid.map(&:payment_event)
-    time_cost_pairs += TrainJourney.unpaid.map(&:payment_event)
+    time_cost_pairs += PlaneJourney.unpaid.includes(flights: :from).map(&:payment_event)
+    time_cost_pairs += FerryJourney.unpaid.includes(:from, :to).map(&:payment_event)
+    time_cost_pairs += TrainJourney.unpaid.includes(:from, :to).map(&:payment_event)
     time_cost_pairs += ScheduledCost.all.map(&:payment_event)
     @date_costs = time_cost_pairs.map do |time, cost|
       DateCost.new(time, cost)
