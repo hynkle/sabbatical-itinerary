@@ -59,9 +59,31 @@ $(function(){
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.amount; })]);
 
+    var past_data = [];
+    var future_data = [];
+    var today = new Date();
+
+    data.forEach(function(d) {
+      if (d.date < today) {
+        console.log('past');
+        past_data.push(d);
+      } else {
+        future_data.push(d);
+        console.log('future');
+      }
+    });
+
+    // ensure that the past and the future have no gap between them
+    past_data.push(future_data[0]);
+
     svg.append("path")
-        .datum(data)
-        .attr("class", "area")
+        .datum(past_data)
+        .attr("class", "area past")
+        .attr("d", area);
+
+    svg.append("path")
+        .datum(future_data)
+        .attr("class", "area future")
         .attr("d", area);
 
     svg.append("g")

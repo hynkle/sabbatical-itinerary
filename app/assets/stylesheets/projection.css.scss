@@ -8,6 +8,11 @@
   }
 
   .area {
-    fill: steelBlue;
+    &.past {
+      fill: lightSteelBlue;
+    }
+    &.future {
+      fill: steelBlue;
+    }
   }
 }
