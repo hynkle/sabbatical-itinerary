@@ -87,11 +87,9 @@ $(function(){
 
     data.forEach(function(d) {
       if (d.date < today) {
-        console.log('past');
         past_data.push(d);
       } else {
         future_data.push(d);
-        console.log('future');
       }
     });
 
