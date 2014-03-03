@@ -51,11 +51,16 @@ class Projection
 
   def daily_costs(date=nil)
     food_expenses = case date
-      when Date.new(2014,1,2)..Date.today then Money.new(40, 'TRY')   # in Istanbul
+      when Date.new(2014,1,2)..Date.today then Money.new(4000, 'TRY')   # TRY 40 in Istanbul
       else DAILY_FOOD_EXPENSES
     end
 
-    food_expenses
+    sundry_expenses = case date
+      when Date.new(2014,1,2)..Date.new(2014,10,1) then Money.new(3000, 'USD')
+      else Money.zero
+    end
+
+    food_expenses + sundry_expenses
   end
 
   def costs_scheduled_for(date)
