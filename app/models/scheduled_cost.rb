@@ -1,5 +1,5 @@
 class ScheduledCost < ActiveRecord::Base
-  monetize :cost_subunits, with_model_currency: :cost_currency, allow_nil: false, numericality: {greater_than_or_equal_to: 0}
+  monetize :cost_subunits, with_model_currency: :cost_currency, allow_nil: false
 
   validates :date, presence: true
   validates :city, presence: true
