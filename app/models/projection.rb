@@ -82,6 +82,7 @@ class Projection
     time_cost_pairs += PlaneJourney.unpaid.includes(flights: :from).map(&:payment_event)
     time_cost_pairs += FerryJourney.unpaid.includes(:from, :to).map(&:payment_event)
     time_cost_pairs += TrainJourney.unpaid.includes(:from, :to).map(&:payment_event)
+    time_cost_pairs += BusJourney.unpaid.map(&:payment_event)
     time_cost_pairs += ScheduledCost.all.map(&:payment_event)
     @date_costs = time_cost_pairs.map do |time, cost|
       DateCost.new(time, cost)

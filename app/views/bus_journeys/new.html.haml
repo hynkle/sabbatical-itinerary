@@ -1,0 +1,12 @@
+= simple_form_for @bus_journey, html: {class: 'form-horizontal'} do |f|
+  = f.input :from, autofocus: true
+  = f.input :to
+  = f.input :date, as: :string, input_html: {type: 'date'}
+  = f.input :operator
+  = f.input :booked
+  = f.input :cost
+  = f.input :cost_currency, as: :select, collection: @currencies, value_method: :iso_code, label_method: ->(c){"#{c.iso_code} (#{c.name})"}
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'
+

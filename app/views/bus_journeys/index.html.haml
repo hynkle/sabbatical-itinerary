@@ -1,0 +1,37 @@
+= link_to new_bus_journey_path, class: 'btn btn-success' do
+  %i.icon-white.icon-plus
+  New Bus Journey
+
+- if @bus_journeys.empty?
+  %div
+    %em None.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th From
+        %th To
+        %th Date
+        %th Operator
+        %th Booked?
+        %th Cost
+    %tbody
+      - @bus_journeys.each do |bj|
+        %tr
+          %td= bj.from
+          %td= bj.to
+          %td= bj.date.strftime('%-d %B')
+          %td= bj.operator
+          %td
+            - if bj.booked?
+              booked
+            - else
+              %strong unbooked
+          %td
+            - if bj.cost.nil?
+              %em unknown
+            - elsif bj.cost.zero?
+              —
+            - else
+              = bj.cost.format
+
