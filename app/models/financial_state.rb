@@ -15,7 +15,7 @@ class FinancialState < ActiveRecord::Base
   end
 
   def self.reverse_chronological
-    order('timestamp DESC')
+    order(timestamp: :desc)
   end
 
   def self.most_recent
