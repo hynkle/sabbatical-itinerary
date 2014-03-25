@@ -1,0 +1,7 @@
+= simple_form_for lodging, html: {class: 'form-vertical'} do |f|
+  = f.input :name
+  = f.input :city
+  = f.input :has_laundry, label: 'Has laundry?'
+  = f.input :has_kitchen, label: 'Has kitchen?'
+  .form-actions
+    = f.button :submit

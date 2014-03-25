@@ -26,6 +26,14 @@ class Stay < ActiveRecord::Base
     (checkout - checkin).to_i
   end
 
+  def has_laundry?
+    lodging.has_laundry?
+  end
+
+  def has_kitchen?
+    lodging.has_kitchen?
+  end
+
   def overlapping_stays
     # This method obviously doesn't work right if checkin or checkout is missing.
     # It also doesn't work if the caller is persisted.

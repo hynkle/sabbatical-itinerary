@@ -1,6 +1,6 @@
 ItinerariesRailsActiverecord::Application.routes.draw do
   resources :emails, only: [:index, :create]
-  resources :lodgings, only: [:index, :new, :create]
+  resources :lodgings, only: [:index, :new, :create, :edit, :update]
   resources :ferry_terminals, only: [:index, :new, :create]
   resources :train_stations, only: [:index, :new, :create]
   resources :stays, only: [:index, :new, :create, :edit, :update]

@@ -7,8 +7,21 @@
       %tr
         %th City
         %th Name
+        %th Laundry?
+        %th Kitchen?
+        %th
     %tbody
       - @lodgings.each do |lodging|
         %tr
           %td= lodging.city
           %td= lodging.name
+          %td
+            - if lodging.has_laundry?
+              %span.label.label-info Laundry
+          %td
+            - if lodging.has_kitchen?
+              %span.label.label-info Kitchen
+          %td
+            = link_to edit_lodging_path(lodging), class: 'btn' do
+              %i.icon-pencil
+              Edit
