@@ -13,6 +13,14 @@ class PlaneJourney < ActiveRecord::Base
     where booked: false
   end
 
+  def self.paid
+    booked
+  end
+
+  def self.booked
+    where booked: true
+  end
+
   def payment_event
     [departure, cost]
   end
