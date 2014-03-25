@@ -13,9 +13,12 @@
         %th Checkout
         %th Nights
         %th Lodging
+        %th Laundry?
+        %th Kitchen?
         %th Booked?
         %th Paid?
         %th Cost
+        %th
     %tbody
       - @stays.each do |stay|
         %tr
@@ -23,6 +26,12 @@
           %td= stay.checkout
           %td= stay.nights
           %td= stay.lodging
+          %td
+            - if stay.has_laundry?
+              %span.label.label-info Laundry
+          %td
+            - if stay.has_kitchen?
+              %span.label.label-info Kitchen
           %td
             - if stay.booked?
               booked
@@ -40,3 +49,7 @@
               —
             - else
               = stay.cost.format
+          %td
+            = link_to edit_stay_path(stay), class: 'btn' do
+              %i.icon-pencil
+              Edit

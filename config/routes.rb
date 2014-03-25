@@ -3,7 +3,7 @@ ItinerariesRailsActiverecord::Application.routes.draw do
   resources :lodgings, only: [:index, :new, :create]
   resources :ferry_terminals, only: [:index, :new, :create]
   resources :train_stations, only: [:index, :new, :create]
-  resources :stays, only: [:index, :new, :create]
+  resources :stays, only: [:index, :new, :create, :edit, :update]
   resources :plane_journeys, only: [:index, :new, :create]
   resources :ferry_journeys, only: [:index, :new, :create]
   resources :train_journeys, only: [:index, :new, :create]
