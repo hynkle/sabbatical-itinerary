@@ -9,6 +9,10 @@ class ScheduledCost < ActiveRecord::Base
     order(:date)
   end
 
+  def self.present_and_future
+    where('date >= ?', Date.today)
+  end
+
   def payment_event
     [date, cost]
   end

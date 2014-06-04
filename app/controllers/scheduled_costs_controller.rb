@@ -3,7 +3,7 @@ class ScheduledCostsController < ApplicationController
   respond_to :html
 
   def index
-    @scheduled_costs = ScheduledCost.chronological
+    @scheduled_costs = ScheduledCost.chronological.present_and_future
     respond_with @scheduled_costs
   end
 

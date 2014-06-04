@@ -3,7 +3,7 @@ class PlaneJourneysController < ApplicationController
   respond_to :html
 
   def index
-    @plane_journeys = PlaneJourney.includes(flights: [:from, :to]).sort_by(&:departure)
+    @plane_journeys = PlaneJourney.includes(flights: [:from, :to]).sort_by(&:departure).reject{|pj| pj.departure < Time.now.beginning_of_day}
     respond_with @plane_journeys
   end
 
@@ -14,7 +14,7 @@ class PlaneJourneysController < ApplicationController
     @currencies = CURRENCIES
     respond_with @plane_journey
   end
-
+  
   def create
     attrs = params.require(:plane_journey).permit(:airline, :booked, :required, :cost, :cost_currency, flights_attributes: [:from_id, :to_id, :departure, :arrival])
     @plane_journey = PlaneJourney.new(attrs)

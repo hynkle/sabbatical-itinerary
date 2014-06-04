@@ -13,6 +13,10 @@ class Stay < ActiveRecord::Base
   def self.chronological
     order(:checkin)
   end
+  
+  def self.present_and_future
+    where('stays.checkout >= ?', Date.today)
+  end
 
   def self.unpaid
     where paid: false

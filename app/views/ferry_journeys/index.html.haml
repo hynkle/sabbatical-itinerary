@@ -17,6 +17,7 @@
         %th Operator
         %th Booked?
         %th Cost
+        %th
     %tbody
       - @ferry_journeys.each do |fj|
         %tr
@@ -40,4 +41,8 @@
               —
             - else
               = fj.cost.format
+          %td
+            = link_to edit_ferry_journey_path(fj), class: 'btn btn-mini' do
+              %i.icon-pencil
+              Edit
 

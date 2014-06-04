@@ -3,7 +3,7 @@ class StaysController < ApplicationController
   respond_to :html
 
   def index
-    @stays = Stay.chronological
+    @stays = Stay.chronological.present_and_future
     respond_with :stays
   end
 

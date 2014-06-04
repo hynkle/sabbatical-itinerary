@@ -17,6 +17,7 @@
         %th Operator
         %th Booked?
         %th Cost
+        %th
     %tbody
       - @train_journeys.each do |tj|
         %tr
@@ -40,4 +41,9 @@
               —
             - else
               = tj.cost.format
+          %td
+            = link_to edit_train_journey_path(tj), class: 'btn btn-mini' do
+              %i.icon-pencil
+              Edit
+            
 

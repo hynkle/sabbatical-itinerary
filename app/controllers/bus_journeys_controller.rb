@@ -3,7 +3,7 @@ class BusJourneysController < ApplicationController
   respond_to :html
 
   def index
-    @bus_journeys = BusJourney.order(:date)
+    @bus_journeys = BusJourney.present_and_future.chronological
     respond_with @bus_journeys
   end
 
