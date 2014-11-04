@@ -17,8 +17,6 @@
 
             %li= link_to 'Stays', stays_path
 
-            %li= link_to 'Scheduled Costs', scheduled_costs_path
-
             %li.dropdown
               = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'} do
                 Journeys
@@ -43,6 +41,7 @@
                 Money
                 %b.caret
               %ul.dropdown-menu
+                %li= link_to 'Scheduled Costs',  scheduled_costs_path
                 %li= link_to 'Financial States', financial_states_path
                 %li= link_to 'Projection',       projection_path
 
